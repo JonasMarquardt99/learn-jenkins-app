@@ -16,7 +16,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --testResultsProcessor=\"jest-junit\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,md}": "prettier --write",
+    "Jenkinsfile": "npm-groovy-lint --fix --failon error"
   },
   "eslintConfig": {
     "extends": [
@@ -38,7 +43,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.39.0",
-    "@types/node": "^20.8.6"
+    "@types/node": "^20.8.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1",
+    "npm-groovy-lint": "^18.0.0",
+    "prettier": "^3.9.8"
   },
   "jest-junit": {
     "suiteName": "jest tests",

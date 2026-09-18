@@ -8,12 +8,6 @@ pipeline {
     }
 
     stages {
-        stage ('Docker') {
-            steps {
-                sh 'docker build -t my-playwright .'
-            }
-        }
-
         stage('Build') {
             agent {
                 docker {
@@ -52,7 +46,7 @@ pipeline {
                             junit 'jest-results/junit.xml'
                         }
                     }
-                } 
+                }
                 stage('E2E Tests') {
                     agent {
                         docker {
@@ -72,7 +66,7 @@ pipeline {
                             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwritght Local', reportTitles: '', useWrapperFileDirectly: true])
                         }
                     }
-                } 
+                }
             }
         }
         stage('Deploy staging') {
@@ -83,7 +77,7 @@ pipeline {
                 }
             }
             environment {
-                CI_ENVIRONMENT_URL = "STAGING_URL_TO_BE_SET"
+                CI_ENVIRONMENT_URL = 'STAGING_URL_TO_BE_SET'
             }
             steps {
                 sh '''
